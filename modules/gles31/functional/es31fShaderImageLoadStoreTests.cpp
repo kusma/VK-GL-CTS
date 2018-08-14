@@ -1619,7 +1619,7 @@ private:
 	//! Generate the shader expression for the argument given to the atomic function. x, y and z are the identifiers for the invocation ID components.
 	static string					getAtomicFuncArgumentShaderStr	(AtomicOperation op, const string& x, const string& y, const string& z, const IVec2& dispatchSizeXY);
 
-	static const int				NUM_INVOCATIONS_PER_PIXEL = 5;
+	static const int				NUM_INVOCATIONS_PER_PIXEL = 4;
 
 	const TextureFormat				m_format;
 	const TextureType				m_imageType;
@@ -2121,7 +2121,7 @@ private:
 	static string					getCompareArgShaderStr	(const string& x, const string& y, const string& z, int imageWidth);
 	static string					getAssignArgShaderStr	(const string& x, const string& y, const string& z, int imageWidth);
 
-	static const int				NUM_INVOCATIONS_PER_PIXEL = 5;
+	static const int				NUM_INVOCATIONS_PER_PIXEL = 4;
 
 	const TextureFormat				m_format;
 	const TextureType				m_imageType;
