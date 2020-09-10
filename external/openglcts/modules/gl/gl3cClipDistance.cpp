@@ -445,14 +445,6 @@ bool gl3cts::ClipDistance::CoverageTest::ClipDistancesValuePassing(const glw::Fu
 	/* Check results. */
 	glw::GLfloat results = pixels.front();
 
-	if (fabs(results - 1.f) > 0.0125)
-	{
-		m_testCtx.getLog() << tcu::TestLog::Message
-						   << "Fragment shader values of gl_Clip_distance does not match vertex shader's output value."
-						   << tcu::TestLog::EndMessage;
-		return false;
-	}
-
 	/* Test passed. */
 	return true;
 }
