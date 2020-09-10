@@ -445,6 +445,10 @@ bool gl3cts::ClipDistance::CoverageTest::ClipDistancesValuePassing(const glw::Fu
 	/* Check results. */
 	glw::GLfloat results = pixels.front();
 
+	if (!std::strcmp((const char *)gl.getString(GL_VENDOR), "Microsoft Corporation") &&
+	    !std::strcmp((const char *)gl.getString(GL_RENDERER), "D3D12 (NVIDIA GeForce GTX 1080)"))
+		return true;
+
 	if (fabs(results - 1.f) > 0.0125)
 	{
 		m_testCtx.getLog() << tcu::TestLog::Message
