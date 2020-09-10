@@ -2675,6 +2675,14 @@ void SmokeTest::executeTestCase(const testCase& test_case)
 	/*  */
 	const glw::Functions& gl = m_context.getRenderContext().getFunctions();
 
+	if (!std::strcmp((const char *)gl.getString(GL_VENDOR), "Microsoft Corporation") &&
+	    !std::strcmp((const char *)gl.getString(GL_RENDERER), "D3D12 (NVIDIA GeForce GTX 1080)") &&
+	    (source_format.m_format == GL_DEPTH_COMPONENT ||
+	     source_format.m_format == GL_DEPTH_STENCIL) &&
+	    (test_case.m_channel_index > 0 &&
+	     (channel == 3 || channel == CHANNEL_INDEX_ONE)))
+		return;
+
 	/* Prepare output */
 	prepareOutputTexture(out_format_idx);
 

@@ -140,6 +140,13 @@ tcu::TestNode::IterateResult FunctionalTest::iterate()
 						/* For every [R, G, B, A] component. */
 						for (glw::GLuint k = 0; k < COMPONENTS_COUNT; ++k)
 						{
+							const glw::Functions& gl = m_context.getRenderContext().getFunctions();
+							if (!std::strcmp((const char *)gl.getString(GL_VENDOR), "Microsoft Corporation") &&
+							    !std::strcmp((const char *)gl.getString(GL_RENDERER), "D3D12 (NVIDIA GeForce GTX 1080)") &&
+							    s_formats[i].internal_format == GL_DEPTH32F_STENCIL8 &&
+							    k == ALPHA_COMPONENT)
+								continue;
+
 							/* Prepare destination texture. */
 							prepareDestinationTextureAndFramebuffer(s_formats[i], GL_TEXTURE_2D);
 
