@@ -1100,7 +1100,7 @@ bool BaseTest::verifyColorGradient(GLvoid* data, unsigned int texIndex, int func
 				break;
 			case verifyBlit:
 				if (j > height * TOLERANCE_HIGH)
-					colorref = 0xffffffff;
+					skip = 1;
 				else if (j < height * TOLERANCE_LOW)
 					colorref = 0xcccccccc;
 				else
