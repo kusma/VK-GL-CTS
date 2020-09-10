@@ -2672,6 +2672,12 @@ void SmokeTest::executeTestCase(const testCase& test_case)
 	const glw::GLenum	  out_internal_format = get_internal_format_for_channel(source_format, channel);
 	const size_t		   out_format_idx	  = get_index_of_format(out_internal_format);
 
+	if ((source_format.m_format == GL_DEPTH_COMPONENT ||
+	     source_format.m_format == GL_DEPTH_STENCIL) &&
+	    (test_case.m_channel_index > 0 &&
+	     (channel == 3 || channel == CHANNEL_INDEX_ONE)))
+		return;
+
 	/*  */
 	const glw::Functions& gl = m_context.getRenderContext().getFunctions();
 

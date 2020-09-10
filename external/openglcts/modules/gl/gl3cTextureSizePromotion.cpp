@@ -140,6 +140,10 @@ tcu::TestNode::IterateResult FunctionalTest::iterate()
 						/* For every [R, G, B, A] component. */
 						for (glw::GLuint k = 0; k < COMPONENTS_COUNT; ++k)
 						{
+							if (s_formats[i].internal_format == GL_DEPTH32F_STENCIL8 &&
+							    k == ALPHA_COMPONENT)
+								continue;
+
 							/* Prepare destination texture. */
 							prepareDestinationTextureAndFramebuffer(s_formats[i], GL_TEXTURE_2D);
 
