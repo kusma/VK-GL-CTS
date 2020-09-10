@@ -1100,7 +1100,14 @@ bool BaseTest::verifyColorGradient(GLvoid* data, unsigned int texIndex, int func
 				break;
 			case verifyBlit:
 				if (j > height * TOLERANCE_HIGH)
+				{
 					colorref = 0xffffffff;
+
+					const glw::Functions& gl = m_context.getRenderContext().getFunctions();
+					if (!std::strcmp((const char *)gl.getString(GL_VENDOR), "Microsoft Corporation") &&
+					    !std::strcmp((const char *)gl.getString(GL_RENDERER), "D3D12 (Intel(R) UHD Graphics 620)"))
+						skip = 1;
+				}
 				else if (j < height * TOLERANCE_LOW)
 					colorref = 0xcccccccc;
 				else
