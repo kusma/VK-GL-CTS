@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<waiver_list>
+
+	<!--/*     Copyright (C) 2020 The Khronos Group Inc
+ *
+ *     Licensed under the Apache License, Version 2.0 (the "License");
+ *     you may not use this file except in compliance with the License.
+ *     You may obtain a copy of the License at
+ *
+ *          http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     Unless required by applicable law or agreed to in writing, software
+ *     distributed under the License is distributed on an "AS IS" BASIS,
+ *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *     See the License for the specific language governing permissions and
+ *     limitations under the License.
+*/-->
+	<!--/*
+	Each <waiver> entry must contain vendor and url string attributes.
+	Url should be a full path to gitlab issue(s).
+	Waiver tag should contain one <description> child that describes issue.
+	Waiver tag should containing one <renderer_list> child.
+	Renderer list should have one or more <r> elements containing renderer names for which this waiver was created.
+	String in <r> tags can use wildcard *.
+	Waiver tag should contain one or more <t> elements containing test paths that should be waived.
+	String in <t> tags can use wildcard *.
+
+	<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="waiver_list">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="waiver" maxOccurs="unbounded">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="description" type="xs:string"/>
+					<xs:element name="renderer_list">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="r" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+					</xs:element>
+					<xs:element name="t" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="vendor" type="xs:string" use="required"/>
+				<xs:attribute name="url" type="xs:string" use="required"/>
+			</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	</xs:element>
+	</xs:schema>
+*/-->
+
+	<waiver vendor="Microsoft Corporation" url="https://gitlab.khronos.org/Tracker/vk-gl-cts/issues/TBD1">
+		<description>Bugs in the Intel D3D12 drivers</description>
+		<renderer_list>
+			<r>D3D12 (Intel(R) UHD Graphics 620)</r>
+		</renderer_list>
+		<t>KHR-GL33.packed_depth_stencil.blit.depth24_stencil8</t>
+		<t>KHR-GL33.packed_depth_stencil.blit.depth32f_stencil8</t>
+	</waiver>
+
+	<waiver vendor="Microsoft Corporation" url="https://gitlab.khronos.org/Tracker/vk-gl-cts/issues/TBD2">
+		<description>Bugs in the NVIDIA D3D12 drivers</description>
+		<renderer_list>
+			<r>D3D12 (NVIDIA GeForce GTX 1080)</r>
+		</renderer_list>
+		<t>KHR-GL33.clip_distance.coverage</t>
+		<t>KHR-GL33.texture_swizzle.functional</t>
+		<t>KHR-GL33.texture_size_promotion.functional</t>
+	</waiver>
+
+</waiver_list>
