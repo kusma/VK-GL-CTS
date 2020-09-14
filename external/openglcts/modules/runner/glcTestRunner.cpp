@@ -264,6 +264,10 @@ static void getBaseOptions(std::vector<std::string>& args, const char* mustpassD
 	args.push_back(string("--deqp-surface-width=") + de::toString(width));
 	args.push_back(string("--deqp-surface-height=") + de::toString(height));
 	args.push_back("--deqp-watchdog=disable");
+
+	de::FilePath waiverFile = de::FilePath(mustpassDir).normalize().join("waivers.xml");
+	if (waiverFile.exists())
+		args.push_back(string("--deqp-waiver-file=") + waiverFile.getPath());
 }
 
 static bool isGLConfigCompatible(configInfo cfgInfo, const AOSPConfig& config)
