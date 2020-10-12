@@ -2672,6 +2672,15 @@ void SmokeTest::executeTestCase(const testCase& test_case)
 	const glw::GLenum	  out_internal_format = get_internal_format_for_channel(source_format, channel);
 	const size_t		   out_format_idx	  = get_index_of_format(out_internal_format);
 
+#if 1
+	if (source_format.m_internal_format != GL_DEPTH24_STENCIL8 ||
+	    channel != 0)
+		return;
+#else
+	if (source_format.m_internal_format == GL_DEPTH24_STENCIL8 &&
+	    channel == 0)
+		return;
+#endif
 	/*  */
 	const glw::Functions& gl = m_context.getRenderContext().getFunctions();
 
@@ -4225,6 +4234,12 @@ void FunctionalTest::verifyOutputImage(const testCase& test_case, size_t output_
 			break;
 		case GL_FLOAT:
 			res = isInRange<glw::GLfloat>(pointer, expected_data_low, expected_data_top);
+			if (!res)
+				printf("err: %f (%08x) %f %f\n", *((float *)pointer), *((uint32_t *)pointer), *((float *)expected_data_low), *((float *)expected_data_top));
+/*
+			else
+				printf("success: %f (%08x)\n", *((float *)pointer), *((uint32_t *)pointer));
+*/
 			break;
 		default:
 			TCU_FAIL("Invalid enum");
